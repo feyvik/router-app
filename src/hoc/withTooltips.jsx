@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const withTooltips = (WrappedComponent) => {
+const WithTooltips = (WrappedComponent) => {
 	return (props) => {
 		const [showTooltip, setShowTooltip] = useState(false);
 
@@ -10,13 +10,10 @@ const withTooltips = (WrappedComponent) => {
 		const mouseOut = () => setShowTooltip(false);
 
 		return (
-			<WrappedComponent
-				{...props}
-				showTooltip={showTooltip}
-				onMouseOver={mouseOver}
-				onMouseOut={mouseOut}
-			/>
+			<div onMouseOver={mouseOver} onMouseOut={mouseOut}>
+				<WrappedComponent {...props} showTooltip={showTooltip} />
+			</div>
 		);
 	};
 };
-export default withTooltips;
+export default WithTooltips;
